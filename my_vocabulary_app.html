@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#173c32">
+<title>My Vocabulary · 영단어 암기장</title>
+<style>
+:root{--bg:#f4f6f2;--card:#fff;--ink:#17231f;--muted:#66736c;--line:#dce4dd;--green:#1d5946;--green2:#e2efe7;--orange:#b8611b;--red:#b33c3c;--shadow:0 8px 24px rgba(21,48,37,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;line-height:1.45}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 15px;background:var(--green);color:white;font-weight:700}button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#edf2ee;color:var(--green);border:1px solid var(--line)}.danger{background:#fff0ef;color:var(--red);border:1px solid #f0ceca}.small{padding:7px 10px;font-size:.88rem}.wrap{max-width:920px;margin:auto;padding:18px 16px 96px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;background:var(--green);color:white;border-radius:14px;display:grid;place-items:center;font-size:23px}.brand h1{font-size:1.22rem;margin:0}.sub{color:var(--muted);font-size:.88rem}.pill{font-size:.78rem;background:var(--green2);color:var(--green);border-radius:99px;padding:5px 9px;white-space:nowrap}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow)}.stat .label{color:var(--muted);font-size:.86rem}.stat .num{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;margin-top:4px}.stat .icon{font-size:1.25rem;margin-bottom:8px}.section{margin-top:22px}.section h2{font-size:1.08rem;margin:0 0 11px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.action{display:flex;align-items:center;gap:12px;text-align:left;background:white;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);padding:14px}.action .ico{font-size:1.5rem}.action span small{display:block;color:var(--muted);font-weight:400;margin-top:3px}.progress{height:8px;background:#e4e9e5;border-radius:20px;overflow:hidden;margin:10px 0}.progress div{height:100%;background:var(--green);width:0%}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted)}.hidden{display:none!important}.view{margin-top:18px}.back{margin-bottom:14px}.word{font-size:2.15rem;font-weight:800;letter-spacing:-.04em;margin:14px 0 4px;overflow-wrap:anywhere}.meaning{font-size:1.08rem;margin:10px 0}.choice{display:block;width:100%;text-align:left;margin:8px 0;background:white;color:var(--ink);border:1px solid var(--line)}.choice.correct{border-color:#278454;background:#e8f6ed}.choice.wrong{border-color:#c34b4b;background:#fff0ef}.input,textarea,select{width:100%;padding:12px;border:1px solid #cbd6cd;border-radius:11px;background:#fff;color:var(--ink)}label{font-size:.9rem;font-weight:700;display:block;margin:12px 0 6px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.notice{padding:12px 14px;border-radius:12px;background:#fff7e8;color:#78430f;font-size:.9rem;margin:10px 0}.success{background:#e8f6ed;color:#205d3c}.wordrow{padding:13px 0;border-bottom:1px solid var(--line)}.wordrow:last-child{border-bottom:0}.tag{font-size:.75rem;padding:4px 7px;border-radius:8px;background:#eef1ef;color:#58665e}.tag.bad{background:#fff0ef;color:var(--red)}.tag.good{background:#e6f4eb;color:#236a43}.bottomnav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(10px)}.bottomnav button{flex:1;max-width:220px}.filelabel{display:block;text-align:center;padding:13px;border:1px dashed #9eafa3;border-radius:12px;background:#f8fbf8;color:var(--green);font-weight:700;cursor:pointer}.smalltext{font-size:.82rem;color:var(--muted)}.empty{text-align:center;padding:28px 12px;color:var(--muted)}.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#17231f;color:white;padding:11px 16px;border-radius:12px;max-width:90vw;z-index:20;box-shadow:var(--shadow)}.inline{display:flex;gap:8px;align-items:center}.inline>*{flex:1}.checkline{display:flex;gap:8px;align-items:center;margin:10px 0}.checkline input{width:auto}.divider{border:0;border-top:1px solid var(--line);margin:16px 0}
+@media(min-width:680px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.wrap{padding-top:26px}.stat{padding:18px}.word{font-size:2.7rem}}@media(max-width:420px){.actions{grid-template-columns:1fr}.top{align-items:flex-start}.formgrid{grid-template-columns:1fr}.stat .num{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand"><div class="logo">文</div><div><h1>My Vocabulary</h1><div class="sub">나의 영단어 암기장</div></div></div>
+  <button class="secondary small" onclick="showView('settings')">⚙ 설정</button>
+</header>
+
+<main id="home">
+  <div class="grid">
+    <div class="stat"><div class="icon">🔥</div><div class="label">연속 학습일</div><div class="num" id="streak">0일</div><div class="smalltext" id="streakSub">하루 10개 이상 학습</div></div>
+    <div class="stat"><div class="icon">🏆</div><div class="label">현재 암기 완료</div><div class="num" id="mastered">0개</div><div class="smalltext">현재 완료 상태인 고유 단어</div></div>
+    <div class="stat"><div class="icon">📚</div><div class="label">전체 등록 단어</div><div class="num" id="total">0개</div><div class="smalltext">중복 영어 단어는 1개로 집계</div></div>
+    <div class="stat"><div class="icon">📖</div><div class="label">미암기 단어</div><div class="num" id="unmastered">0개</div><div class="smalltext">암기 중이거나 복습이 필요한 단어</div></div>
+  </div>
+  <section class="section">
+    <h2>＋ 영어 단어 등록</h2>
+    <div class="actions">
+      <button class="action" onclick="showView('photo')"><span class="ico">📷</span><span>사진으로 업로드<small>사진에서 단어·뜻 추출 (OCR)</small></span></button>
+      <button class="action" onclick="showView('manual')"><span class="ico">⌨️</span><span>직접 입력<small>영어 단어와 뜻을 여러 개 등록</small></span></button>
+    </div>
+  </section>
+  <section class="section card">
+    <div class="row"><h2 style="margin:0">오늘의 학습</h2><span class="pill" id="todayDate"></span></div>
+    <div class="row" style="margin-top:15px"><span class="muted">오늘 학습한 단어</span><strong id="todayCount">0개</strong></div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="row"><span class="smalltext">연속 학습 인정 기준: 하루 10개 이상</span><span class="smalltext" id="goalText">0 / 10</span></div>
+    <div class="actions" style="margin-top:14px">
+      <button onclick="startStudy()">▶ 학습 시작</button>
+      <button class="secondary" onclick="showView('summary')">오늘 학습 결과</button>
+    </div>
+    <div class="row" style="margin-top:16px"><span class="muted">오늘 복습할 단어</span><strong id="dueCount">0개</strong></div>
+    <div class="row" style="margin-top:8px"><span class="muted">아직 암기 중인 단어</span><strong id="learningCount">0개</strong></div>
+  </section>
+  <section class="section card">
+    <div class="row"><h2 style="margin:0">알림 일정</h2><button class="secondary small" onclick="showView('settings')">설정</button></div>
+    <div class="row" style="margin-top:12px"><span>🌅 아침</span><strong>07:30</strong></div>
+    <div class="row" style="margin-top:8px"><span>☀️ 점심</span><strong>12:30</strong></div>
+    <div class="row" style="margin-top:8px"><span>🌇 저녁</span><strong>18:30</strong></div>
+    <div class="row" style="margin-top:8px"><span>🌙 취침 전</span><strong>22:00</strong></div>
+    <p class="smalltext">브라우저 알림은 앱 페이지가 열려 있을 때 동작합니다. iPhone에서 페이지가 닫혀 있어도 받는 예약 푸시 알림은 별도 호스팅·푸시 서버가 필요합니다.</p>
+  </section>
+</main>
+
+<section id="view-study" class="view hidden">
+  <button class="secondary back" onclick="showView('home')">← 홈으로</button>
+  <div class="card">
+    <div class="row"><span class="pill" id="studyStatus">학습 중</span><span class="muted" id="studyPosition">0 / 0</span></div>
+    <div id="studyContent">
+      <div class="empty">학습할 단어가 없습니다. 단어를 먼저 등록해 주세요.</div>
+    </div>
+  </div>
+</section>
+
+<section id="view-manual" class="view hidden">
+  <button class="secondary back" onclick="showView('home')">← 홈으로</button>
+  <div class="card">
+    <h2>직접 영어 단어·뜻 입력</h2>
+    <p class="smalltext">한 줄에 하나씩 입력하세요. 구분자는 탭, 쉼표, 세미콜론 또는 `영어 - 뜻` 형식을 사용할 수 있습니다. 뜻이 여러 개면 `;`로 구분해도 됩니다.</p>
+    <label for="bulkInput">단어와 뜻</label>
+    <textarea id="bulkInput" rows="8" class="input" placeholder="abandon — 포기하다&#10;abundant — 풍부한&#10;accurate — 정확한"></textarea>
+    <div class="inline" style="margin-top:12px"><button onclick="previewManual()">등록 전 확인</button><button class="secondary" onclick="document.getElementById('bulkInput').value=''">비우기</button></div>
+    <div id="manualPreview"></div>
+  </div>
+</section>
+
+<section id="view-photo" class="view hidden">
+  <button class="secondary back" onclick="showView('home')">← 홈으로</button>
+  <div class="card">
+    <h2>사진으로 단어 업로드</h2>
+    <p class="smalltext">사진을 선택하면 OCR을 시도합니다. OCR 라이브러리는 인터넷 연결이 필요하며, 인식 결과는 반드시 검토한 뒤 등록하세요.</p>
+    <label class="filelabel">📷 사진 선택 또는 촬영
+      <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none" onchange="processPhoto(event)">
+    </label>
+    <div id="ocrStatus" class="notice hidden"></div>
+    <img id="photoPreview" class="hidden" alt="선택한 단어장 사진" style="width:100%;max-height:360px;object-fit:contain;border-radius:12px;margin-top:12px">
+    <label for="ocrText">인식된 텍스트 / 직접 보정</label>
+    <textarea id="ocrText" rows="8" class="input" placeholder="OCR 결과가 여기에 표시됩니다.&#10;예: abandon — 포기하다"></textarea>
+    <p class="smalltext">OCR이 실패하거나 표 형식이 복잡하면 결과를 직접 수정해 주세요.</p>
+    <button block onclick="previewOCR()">인식 결과 확인 및 등록 준비</button>
+    <div id="ocrPreview"></div>
+  </div>
+</section>
+
+<section id="view-summary" class="view hidden">
+  <button class="secondary back" onclick="showView('home')">← 홈으로</button>
+  <div class="card">
+    <h2>오늘의 학습 결과</h2>
+    <div class="grid">
+      <div class="stat"><div class="label">학습한 단어</div><div class="num" id="sumTotal">0</div></div>
+      <div class="stat"><div class="label">오답 단어</div><div class="num" id="sumWrong">0</div></div>
+      <div class="stat"><div class="label">정답 단어</div><div class="num" id="sumCorrect">0</div></div>
+      <div class="stat"><div class="label">오늘 학습 목표</div><div class="num" id="sumGoal">0/10</div></div>
+    </div>
+    <div class="actions" style="margin-top:14px"><button onclick="studyWrongToday()">오답만 다시 복습</button><button class="secondary" onclick="studyAllToday()">전체 단어 다시 보기</button></div>
+    <div id="summaryList" style="margin-top:14px"></div>
+  </div>
+</section>
+
+<section id="view-settings" class="view hidden">
+  <button class="secondary back" onclick="showView('home')">← 홈으로</button>
+  <div class="card">
+    <h2>설정 및 데이터 관리</h2>
+    <div class="notice">데이터는 이 브라우저의 저장 공간에 보관됩니다. 브라우저 데이터 삭제 또는 다른 기기 사용 시 기록이 사라질 수 있으므로 주기적으로 백업하세요.</div>
+    <label>일일 학습 목표</label><input id="goalInput" type="number" min="1" max="500" value="10" class="input">
+    <label>알림 시간 (하루 4회)</label>
+    <div class="formgrid">
+      <div><label for="t1">아침</label><input id="t1" type="time" value="07:30" class="input"></div>
+      <div><label for="t2">점심</label><input id="t2" type="time" value="12:30" class="input"></div>
+      <div><label for="t3">저녁</label><input id="t3" type="time" value="18:30" class="input"></div>
+      <div><label for="t4">취침 전</label><input id="t4" type="time" value="22:00" class="input"></div>
+    </div>
+    <div class="checkline"><input type="checkbox" id="notifyEnabled"><label for="notifyEnabled" style="margin:0">페이지가 열려 있을 때 브라우저 알림 사용</label></div>
+    <button onclick="saveSettings()">설정 저장</button>
+    <button class="secondary" style="margin-top:10px" onclick="requestNotifications()">알림 권한 요청</button>
+    <hr class="divider">
+    <h2>단어장 백업 및 복원</h2>
+    <div class="actions">
+      <button onclick="exportData()">JSON 백업 내보내기</button>
+      <label class="filelabel">백업 파일 불러오기<input type="file" accept=".json,application/json" style="display:none" onchange="importData(event)"></label>
+    </div>
+    <hr class="divider">
+    <h2>전체 단어 목록</h2>
+    <input id="searchWords" class="input" placeholder="영어 단어 또는 뜻 검색" oninput="renderWordList()">
+    <div id="wordList"></div>
+    <hr class="divider">
+    <button class="danger" onclick="clearAllData()">모든 단어 및 학습 기록 삭제</button>
+  </div>
+</section>
+</div>
+
+<nav class="bottomnav">
+  <button class="secondary" onclick="showView('home')">🏠 홈</button>
+  <button class="secondary" onclick="startStudy()">📘 학습</button>
+  <button class="secondary" onclick="showView('summary')">📊 결과</button>
+  <button class="secondary" onclick="showView('settings')">⚙ 설정</button>
+</nav>
+<div id="toast" class="toast hidden" role="status"></div>
+
+<script>
+const KEY='myVocabularyApp_v1';
+const today=()=>new Date().toLocaleDateString('en-CA');
+const norm=s=>String(s||'').trim().toLocaleLowerCase().replace(/\s+/g,' ');
+const cleanMeaning=s=>String(s||'').trim().replace(/\s+/g,' ');
+let db={words:[],reviews:[],studyDays:{},settings:{goal:10,times:['07:30','12:30','18:30','22:00'],notifications:false},session:[]};
+let queue=[],qIndex=0,currentWord=null,choiceShown=false,sessionMode='normal',previewRows=[];
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&Array.isArray(d.words)){db={...db,...d};db.settings={...db.settings,...(d.settings||{})};}}catch(e){console.warn(e)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderHome();}
+function uid(){return 'w_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8)}
+function dateKey(){return today()}
+function getWord(id){return db.words.find(w=>w.id===id)}
+function meanings(w){return Array.isArray(w.meanings)?w.meanings:[]}
+function mastered(w){return w.status==='mastered'}
+function due(w){return !w.nextReview||w.nextReview<=dateKey()}
+function todayReviews(){return db.reviews.filter(r=>r.date===dateKey())}
+function uniqueToday(){return [...new Set(todayReviews().map(r=>r.wordId))]}
+function todayWrongIds(){const latest={};todayReviews().forEach(r=>{latest[r.wordId]=r});return Object.values(latest).filter(r=>!r.correct).map(r=>r.wordId)}
+function streakCount(){let n=0,d=new Date();const days=db.studyDays||{};if(!days[dateKey()])d.setDate(d.getDate()-1);while(true){const k=d.toLocaleDateString('en-CA');if(!days[k])break;n++;d.setDate(d.getDate()-1)}return n}
+function renderHome(){
+ const total=db.words.length,master=db.words.filter(mastered).length,learn=total-master;
+ document.getElementById('streak').textContent=streakCount()+'일';
+ document.getElementById('mastered').textContent=master+'개';
+ document.getElementById('total').textContent=total+'개';
+ document.getElementById('unmastered').textContent=learn+'개';
+ document.getElementById('todayCount').textContent=uniqueToday().length+'개';
+ document.getElementById('dueCount').textContent=db.words.filter(due).length+'개';
+ document.getElementById('learningCount').textContent=learn+'개';
+ const goal=Number(db.settings.goal)||10,done=uniqueToday().length;
+ document.getElementById('goalText').textContent=Math.min(done,goal)+' / '+goal;
+ document.getElementById('progressBar').style.width=Math.min(100,done/goal*100)+'%';
+ document.getElementById('todayDate').textContent=new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
+}
+function showView(v){document.getElementById('home').classList.toggle('hidden',v!=='home');document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));if(v!=='home')document.getElementById('view-'+v).classList.remove('hidden');if(v==='summary')renderSummary();if(v==='settings'){document.getElementById('goalInput').value=db.settings.goal;db.settings.times.forEach((t,i)=>document.getElementById('t'+(i+1)).value=t);document.getElementById('notifyEnabled').checked=!!db.settings.notifications;renderWordList()}window.scrollTo({top:0,behavior:'smooth'});}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2800)}
+function parseLine(line){
+ line=line.trim();if(!line)return null;
+ let parts=null;
+ for(const sep of ['\t',' — ',' – ',' - ',' → ',' : ','=']){const i=line.indexOf(sep);if(i>0){parts=[line.slice(0,i),line.slice(i+sep.length)];break}}
+ if(!parts){const m=line.match(/^([A-Za-z][A-Za-z' -]*?)\s{2,}(.+)$/);if(m)parts=[m[1],m[2]]}
+ if(!parts)return null;
+ const word=parts[0].trim().replace(/^[•*\d.)\s]+/,'').trim();
+ const meaning=parts[1].trim();
+ if(!word||!meaning||!/[a-z]/i.test(word))return null;
+ return {word,meaning};
+}
+function parseBulk(text){return text.split(/\r?\n/).map(parseLine).filter(Boolean)}
+function mergeRows(rows,source='manual'){
+ let added=0,meaningsAdded=0,unchanged=0;
+ rows.forEach(r=>{
+  const word=r.word.trim(),meaning=cleanMeaning(r.meaning);if(!word||!meaning)return;
+  let old=db.words.find(w=>norm(w.word)===norm(word));
+  if(!old){old={id:uid(),word,meanings:[meaning],status:'learning',createdAt:dateKey(),nextReview:dateKey(),source,wrongCount:0,correctCount:0,meaningStates:{}};old.meaningStates[norm(meaning)]={status:'learning',correctCount:0,wrongCount:0};db.words.push(old);added++;return}
+  const found=meanings(old).some(m=>norm(m)===norm(meaning));
+  if(found){unchanged++;return}
+  old.meanings.push(meaning);old.meaningStates=old.meaningStates||{};old.meaningStates[norm(meaning)]={status:'learning',correctCount:0,wrongCount:0};meaningsAdded++;
+ });
+ save();return {added,meaningsAdded,unchanged};
+}
+function previewManual(){
+ const rows=parseBulk(document.getElementById('bulkInput').value),el=document.getElementById('manualPreview');
+ previewRows=rows;
+ if(!rows.length){el.innerHTML='<div class="notice">인식 가능한 행이 없습니다. 예: abandon — 포기하다</div>';return}
+ el.innerHTML='<div class="notice">총 '+rows.length+'개 행을 확인했습니다. 중복 단어는 기존 뜻을 유지하고 새로운 뜻만 추가합니다.</div>'+rows.map(r=>'<div class="wordrow"><strong>'+esc(r.word)+'</strong><div class="muted">'+esc(r.meaning)+'</div></div>').join('')+'<button style="width:100%;margin-top:12px" onclick="confirmManual()">단어장에 등록</button>';
+}
+function confirmManual(){const r=mergeRows(previewRows,'manual');document.getElementById('manualPreview').innerHTML='';document.getElementById('bulkInput').value='';toast(`신규 ${r.added}개 · 뜻 추가 ${r.meaningsAdded}개 · 동일 뜻 중복 ${r.unchanged}개`);showView('home')}
+async function processPhoto(e){
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ const img=document.getElementById('photoPreview');img.src=URL.createObjectURL(file);img.classList.remove('hidden');
+ const status=document.getElementById('ocrStatus');status.classList.remove('hidden');status.textContent='OCR 엔진을 불러오는 중입니다. 인터넷 연결이 필요합니다.';
+ try{
+  if(!window.Tesseract){await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js')}
+  status.textContent='사진에서 텍스트를 인식하고 있습니다…';
+  const result=await Tesseract.recognize(file,'eng+kor',{logger:m=>{if(m.status==='recognizing text')status.textContent='텍스트 인식 중… '+Math.round((m.progress||0)*100)+'%'}});
+  document.getElementById('ocrText').value=result.data.text||'';
+  status.textContent='인식이 완료됐습니다. 단어와 뜻을 확인하고 필요하면 직접 수정하세요.';
+ }catch(err){
+  status.textContent='자동 OCR을 실행하지 못했습니다. 네트워크 또는 언어 데이터 로딩 문제일 수 있습니다. 아래 입력란에 단어와 뜻을 직접 입력하거나 수정해 주세요.';
+ }
+}
+function loadScript(src){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error('script load failed'));document.head.appendChild(s)})}
+function previewOCR(){
+ const rows=parseBulk(document.getElementById('ocrText').value),el=document.getElementById('ocrPreview');previewRows=rows;
+ if(!rows.length){el.innerHTML='<div class="notice">단어와 뜻을 구분할 수 없습니다. 인식 결과를 `영어 단어 — 한국어 뜻` 형식으로 수정해 주세요.</div>';return}
+ const dup=rows.filter(r=>db.words.some(w=>norm(w.word)===norm(r.word)));
+ el.innerHTML='<div class="notice">추출 '+rows.length+'개 · 기존 단어와 중복 '+dup.length+'개. 등록 전 결과를 확인하세요. 기존 뜻은 유지되며, 새로운 뜻만 추가됩니다.</div>'+rows.map(r=>{const old=db.words.find(w=>norm(w.word)===norm(r.word));const same=old&&meanings(old).some(m=>norm(m)===norm(r.meaning));return `<div class="wordrow"><div class="row"><strong>${esc(r.word)}</strong><span class="tag ${!old?'good':same?'':'bad'}">${!old?'신규':same?'동일 뜻 중복':'새 뜻 추가'}</span></div><div>${esc(r.meaning)}</div>${old?'<div class="smalltext">기존 뜻: '+esc(meanings(old).join(' / '))+'</div>':''}</div>`}).join('')+'<button style="width:100%;margin-top:12px" onclick="confirmOCR()">확인한 단어 등록</button>';
+}
+function confirmOCR(){const r=mergeRows(previewRows,'photo');document.getElementById('ocrPreview').innerHTML='';document.getElementById('ocrText').value='';toast(`신규 ${r.added}개 · 뜻 추가 ${r.meaningsAdded}개 · 동일 뜻 중복 ${r.unchanged}개`);showView('home')}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function startStudy(ids=null,mode='normal'){
+ const candidates=ids?ids.map(getWord).filter(Boolean):db.words.filter(due);
+ if(!candidates.length){showView('study');document.getElementById('studyContent').innerHTML='<div class="empty">학습할 단어가 없습니다. 단어를 등록하거나 복습 예정일을 확인하세요.</div>';document.getElementById('studyPosition').textContent='0 / 0';return}
+ // Prioritize words with recent errors, then due unmastered words, then mastered review.
+ queue=candidates.sort((a,b)=>(b.wrongCount||0)-(a.wrongCount||0));qIndex=0;sessionMode=mode;db.session=[];currentWord=null;showView('study');renderQuestion();
+}
+function renderQuestion(){
+ const el=document.getElementById('studyContent');
+ if(qIndex>=queue.length){el.innerHTML='<div class="empty"><h2>학습 세션 완료</h2><p>오늘 학습한 단어: '+uniqueToday().length+'개</p><button onclick="showView(\'summary\')">오늘 결과 보기</button><button class="secondary" style="margin-top:8px" onclick="showView(\'home\')">홈으로</button></div>';document.getElementById('studyPosition').textContent=queue.length+' / '+queue.length;renderHome();return}
+ currentWord=queue[qIndex];choiceShown=false;
+ document.getElementById('studyPosition').textContent=(qIndex+1)+' / '+queue.length;
+ const primary=meanings(currentWord)[0]||'(뜻 미등록)';
+ el.innerHTML=`<div class="smalltext">영어 단어의 뜻을 먼저 떠올려 보세요.</div><div class="word">${esc(currentWord.word)}</div><div class="muted">뜻을 생각한 뒤 아래 버튼을 선택하세요.</div>
+ <div style="margin-top:18px"><button class="secondary" style="width:100%" onclick="revealChoices()">객관식 보기 확인</button></div>
+ <div id="choices" class="hidden"></div>
+ <div id="answerFeedback"></div>
+ <div class="actions" style="margin-top:14px"><button class="danger" onclick="recordAnswer(false,'unknown')">뜻을 모르겠어요 · 오답 처리</button><button onclick="recordAnswer(true,'recall')">보지 않고 알고 있어요</button></div>
+ <p class="smalltext">정답은 등록된 뜻 중 하나라도 정확히 떠올렸다면 정답으로 처리합니다. 뜻을 모르면 오답 버튼을 선택하세요.</p>`;
+}
+function revealChoices(){
+ if(choiceShown)return;choiceShown=true;
+ const w=currentWord,correct=meanings(w)[0]||'(뜻 미등록)';
+ let opts=[correct];
+ const pool=db.words.filter(x=>x.id!==w.id).flatMap(x=>meanings(x)).filter(m=>!opts.some(o=>norm(o)===norm(m)));
+ for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+ opts=opts.concat(pool.slice(0,3));while(opts.length<4)opts.push(['모르겠음','기억나지 않음','잘 모르겠음'][opts.length-1]||'뜻 없음');
+ opts=opts.slice(0,4).sort(()=>Math.random()-.5);
+ const box=document.getElementById('choices');box.classList.remove('hidden');
+ box.innerHTML='<div class="smalltext" style="margin-top:14px">뜻을 확인하기 위한 선택지입니다. 보기를 열었다면 정답을 골라도 암기 완료로 바로 처리하지 않습니다.</div>'+opts.map((o,i)=>`<button class="choice" onclick="selectChoice(this,${JSON.stringify(o).replace(/</g,'\\u003c')})">${['①','②','③','④'][i]} ${esc(o)}</button>`).join('');
+}
+function selectChoice(btn,meaning){
+ const w=currentWord;const correct=meanings(w).some(m=>norm(m)===norm(meaning));
+ document.querySelectorAll('#choices .choice').forEach(b=>b.disabled=true);
+ btn.classList.add(correct?'correct':'wrong');
+ document.getElementById('answerFeedback').innerHTML='<div class="notice '+(correct?'success':'')+'">'+(correct?'정답입니다. 다만 보기를 확인했으므로 암기 완료로 승격하지 않습니다.':'오답입니다. 정답: '+esc(meanings(w).join(' / ')))+'</div><button style="width:100%" onclick="recordAnswer('+correct+',\'choice\')">다음 단어</button>';
+}
+function recordAnswer(correct,method){
+ if(!currentWord)return;const w=currentWord,day=dateKey();
+ db.reviews.push({id:uid(),wordId:w.id,date:day,correct,method,word:w.word,meanings:[...meanings(w)],at:new Date().toISOString()});
+ w.meaningStates=w.meaningStates||{};
+ meanings(w).forEach(m=>{const k=norm(m);w.meaningStates[k]=w.meaningStates[k]||{status:'learning',correctCount:0,wrongCount:0};const s=w.meaningStates[k];if(correct){s.correctCount++;if(method==='recall'||method==='unknown')s.status='mastered'}else{s.wrongCount++;s.status='learning'}});
+ if(correct){w.correctCount=(w.correctCount||0)+1;if(method==='recall'){w.status='mastered';w.lastCorrect=day;w.nextReview=addDays(day,1)}else{if(w.status!=='mastered')w.status='learning';w.nextReview=addDays(day,1)}}else{w.wrongCount=(w.wrongCount||0)+1;w.status='learning';w.nextReview=day}
+ // Newly added meanings need separate tracking; word mastery is only complete when all meanings are mastered.
+ const allMastered=meanings(w).length>0&&meanings(w).every(m=>w.meaningStates[norm(m)]&&w.meaningStates[norm(m)].status==='mastered');
+ w.status=allMastered?'mastered':'learning';
+ db.studyDays=db.studyDays||{};if(uniqueToday().length>=Number(db.settings.goal||10))db.studyDays[day]=true;
+ save();qIndex++;renderQuestion();
+}
+function addDays(day,n){const d=new Date(day+'T12:00:00');d.setDate(d.getDate()+n);return d.toLocaleDateString('en-CA')}
+function renderSummary(){
+ const rs=todayReviews(),ids=uniqueToday(),wrong=todayWrongIds(),wrongSet=new Set(wrong);
+ document.getElementById('sumTotal').textContent=ids.length;
+ document.getElementById('sumWrong').textContent=wrong.length;
+ document.getElementById('sumCorrect').textContent=ids.filter(id=>{const a=rs.filter(r=>r.wordId===id);return a.length&&a[a.length-1].correct}).length;
+ document.getElementById('sumGoal').textContent=Math.min(ids.length,Number(db.settings.goal||10))+'/'+(db.settings.goal||10);
+ const ordered=[...wrong,...ids.filter(id=>!wrongSet.has(id))];
+ const el=document.getElementById('summaryList');
+ if(!ordered.length){el.innerHTML='<div class="empty">오늘 기록된 학습이 없습니다.</div>';return}
+ el.innerHTML=ordered.map(id=>{const w=getWord(id);if(!w)return '';const latest=rs.filter(r=>r.wordId===id).slice(-1)[0];return `<div class="wordrow"><div class="row"><strong>${esc(w.word)}</strong><span class="tag ${wrongSet.has(id)?'bad':'good'}">${wrongSet.has(id)?'오답 우선':'정답'}</span></div><details><summary class="smalltext" style="cursor:pointer;margin-top:6px">뜻 확인하기</summary><div class="meaning">${esc(meanings(w).join(' / '))}</div></details><div class="smalltext">오늘 오답 ${rs.filter(r=>r.wordId===id&&!r.correct).length}회 · 누적 오답 ${w.wrongCount||0}회</div></div>`}).join('');
+}
+function studyWrongToday(){const ids=todayWrongIds();if(!ids.length){toast('오늘의 오답이 없습니다.');return}startStudy(ids,'wrong')}
+function studyAllToday(){const ids=uniqueToday();if(!ids.length){toast('오늘 학습한 단어가 없습니다.');return}startStudy(ids,'today')}
+function renderWordList(){
+ const q=norm(document.getElementById('searchWords')?.value||''),el=document.getElementById('wordList');if(!el)return;
+ const arr=db.words.filter(w=>norm(w.word).includes(q)||meanings(w).some(m=>norm(m).includes(q)));
+ if(!arr.length){el.innerHTML='<div class="empty">등록된 단어가 없습니다.</div>';return}
+ el.innerHTML=arr.map(w=>`<div class="wordrow"><div class="row"><strong>${esc(w.word)}</strong><span class="tag ${mastered(w)?'good':'bad'}">${mastered(w)?'암기 완료':'암기 중'}</span></div><div>${esc(meanings(w).join(' / '))}</div><div class="row" style="margin-top:8px"><span class="smalltext">정답 ${w.correctCount||0}회 · 오답 ${w.wrongCount||0}회</span><button class="secondary small" onclick="editWord('${w.id}')">뜻 수정</button></div></div>`).join('');
+}
+function editWord(id){
+ const w=getWord(id);if(!w)return;const val=prompt('뜻을 입력하세요. 여러 뜻은 세미콜론(;)으로 구분합니다.',meanings(w).join('; '));if(val===null)return;
+ const ms=val.split(';').map(cleanMeaning).filter(Boolean);if(!ms.length){toast('뜻은 최소 1개 필요합니다.');return}
+ const oldStates=w.meaningStates||{};w.meanings=[...new Set(ms)];w.meaningStates={};w.meanings.forEach(m=>w.meaningStates[norm(m)]=oldStates[norm(m)]||{status:'learning',correctCount:0,wrongCount:0});
+ w.status=w.meanings.every(m=>w.meaningStates[norm(m)]?.status==='mastered')?'mastered':'learning';save();renderWordList();toast('뜻을 수정했습니다.');
+}
+function saveSettings(){
+ db.settings.goal=Math.max(1,Math.min(500,Number(document.getElementById('goalInput').value)||10));
+ db.settings.times=[1,2,3,4].map(i=>document.getElementById('t'+i).value||['07:30','12:30','18:30','22:00'][i-1]);
+ db.settings.notifications=document.getElementById('notifyEnabled').checked;save();toast('설정을 저장했습니다.');
+}
+async function requestNotifications(){
+ if(!('Notification' in window)){toast('이 브라우저는 알림 API를 지원하지 않습니다.');return}
+ try{const p=await Notification.requestPermission();if(p==='granted'){document.getElementById('notifyEnabled').checked=true;db.settings.notifications=true;save();toast('알림 권한이 허용됐습니다. 페이지가 열려 있을 때 알림을 확인할 수 있습니다.')}else toast('알림 권한이 허용되지 않았습니다.')}catch(e){toast('알림 권한 요청을 완료하지 못했습니다.')}
+}
+let lastAlertKey='';
+function checkAlerts(){
+ if(!db.settings.notifications||!('Notification' in window)||Notification.permission!=='granted')return;
+ const now=new Date(),hhmm=now.toTimeString().slice(0,5),day=dateKey();
+ db.settings.times.forEach((t,i)=>{const k=day+'_'+i+'_'+t;if(hhmm===t&&lastAlertKey!==k){lastAlertKey=k;try{new Notification(['아침 단어 학습','점심 단어 복습','저녁 단어 학습','취침 전 단어 복습'][i],{body:uniqueToday().length>=Number(db.settings.goal||10)?'오늘 목표를 달성했습니다. 오답을 복습해 보세요.':'오늘 단어를 학습해 연속 학습 기록을 이어가세요.'})}catch(e){}}});
+}
+function exportData(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='my-vocabulary-backup-'+dateKey()+'.json';a.click();URL.revokeObjectURL(url)}
+function importData(e){const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.words)||!Array.isArray(d.reviews))throw new Error('format');if(!confirm('현재 단어장과 기록을 백업 파일 내용으로 교체할까요?'))return;db=d;db.settings={goal:10,times:['07:30','12:30','18:30','22:00'],notifications:false,...(d.settings||{})};save();renderWordList();toast('백업을 복원했습니다.')}catch(err){toast('올바른 백업 JSON 파일이 아닙니다.')}e.target.value=''};r.readAsText(f)}
+function clearAllData(){if(!confirm('모든 단어와 학습 기록을 삭제할까요? 이 작업은 되돌릴 수 없습니다.'))return;localStorage.removeItem(KEY);db={words:[],reviews:[],studyDays:{},settings:{goal:10,times:['07:30','12:30','18:30','22:00'],notifications:false},session:[]};save();renderWordList();toast('데이터를 삭제했습니다.')}
+load();renderHome();setInterval(checkAlerts,15000);
+</script>
+</body>
+</html>
